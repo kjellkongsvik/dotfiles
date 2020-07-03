@@ -1,0 +1,13 @@
+[user]
+    email = kjell.kongsvik@gmail.com
+    name = Kjell W. Kongsvik
+    editor = vim
+[core]
+    editor = vim
+    excludesfile = ~/.local_gitignore
+[alias]
+    co = checkout
+    st = status
+    sw = switch
+    chp = cherry-pick
+
