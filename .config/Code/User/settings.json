@@ -1,6 +1,5 @@
 {
     "editor.minimap.enabled": false,
-    "editor.formatOnSave": true,
     "editor.codeLens": true,
     "editor.renderWhitespace": "none",
     "editor.roundedSelection": false,
@@ -26,4 +25,5 @@
     "rust-analyzer.inlayHints.enable": false,
     "window.zoomLevel": 0,
     "workbench.colorTheme": "Default Dark+",
+    "python.languageServer": "Microsoft",
 }
