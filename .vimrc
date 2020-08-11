@@ -3,25 +3,40 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-set tabstop=4
-set laststatus=2
 
-:highlight CursorColumn ctermbg=DarkGrey cterm=bold term=bold
+" Fish doesn't play all that well with others
+set shell=/bin/bash
+let mapleader = "\<Space>"
+
+set tabstop=4
+set number
+set laststatus=2
+set mouse=a
+color desert
+
+":highlight CursorColumn ctermbg=DarkGrey cterm=bold term=bold
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-Plug 'terryma/vim-multiple-cursors'
+"Plug 'terryma/vim-multiple-cursors'
 Plug 'preservim/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'fatih/vim-go'
 
+Plug 'machakann/vim-highlightedyank'
+Plug 'airblade/vim-rooter'
 Plug 'itchyny/lightline.vim'
 
 call plug#end()
+
+let g:go_fmt_autosave=0
+
+" Quick-save
+nmap <leader>w :w<CR>
 
 nnoremap <C-b> :<C-u>NERDTreeToggle<CR>
 nnoremap <C-p> :<C-u>FZF<CR>
@@ -67,7 +82,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-k> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -176,3 +191,27 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+
+" Use <c-.> to trigger completion.
+inoremap <silent><expr> <c-.> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" <leader><leader> toggles between buffers
+nnoremap <leader><leader> <c-^>
+
+" Neat X clipboard integration
+" ,p will paste clipboard into buffer
+" ,c will copy entire buffer into clipboard
+noremap <leader>p :read !xsel --clipboard --output<cr>
+noremap <leader>c :w !xsel -ib<cr><cr>
+
+let g:ctrlp_user_command = 'fd --type f --color never "" %s'
+
+command! BufOnly silent! execute "%bd|e#|bd#"
