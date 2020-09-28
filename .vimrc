@@ -37,6 +37,16 @@ let g:go_fmt_autosave=0
 " Quick-save
 nmap <leader>w :w<CR>
 
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+
 nnoremap <C-b> :<C-u>NERDTreeToggle<CR>
 nnoremap <C-p> :<C-u>FZF<CR>
 
