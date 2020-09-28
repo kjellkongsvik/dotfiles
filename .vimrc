@@ -12,6 +12,7 @@ set tabstop=4
 set number
 set laststatus=2
 set mouse=a
+set clipboard=unnamedplus
 color desert
 
 ":highlight CursorColumn ctermbg=DarkGrey cterm=bold term=bold
