@@ -41,6 +41,13 @@ nmap <leader>w :w<CR>
 nnoremap <C-b> :<C-u>NERDTreeToggle<CR>
 nnoremap <C-p> :<C-u>FZF<CR>
 
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
 " TextEdit might fail if hidden is not set.
 set hidden
 

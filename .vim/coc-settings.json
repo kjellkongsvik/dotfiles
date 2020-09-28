@@ -7,5 +7,5 @@
       "filetypes": ["go"]
     }
   },
-  "suggest.autoTrigger": "none"
+  "suggest.autoTrigger": "none",
 }
