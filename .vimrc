@@ -21,7 +21,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
+Plug 'vim-airline/vim-airline'
 "Plug 'terryma/vim-multiple-cursors'
 Plug 'preservim/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -32,11 +32,14 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'airblade/vim-rooter'
 call plug#end()
 
+let g:airline#extensions#tabline#enabled = 1
+set t_Co=256
 let g:go_fmt_autosave=0
 
 " Quick-save
 nmap <leader>w :w<CR>
-
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 nnoremap <Leader>1 :1b<CR>
 nnoremap <Leader>2 :2b<CR>
 nnoremap <Leader>3 :3b<CR>
