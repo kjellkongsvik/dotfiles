@@ -232,3 +232,7 @@ noremap <leader>c :w !xsel -ib<cr><cr>
 let g:ctrlp_user_command = 'fd --type f --color never "" %s'
 
 command! BufOnly silent! execute "%bd|e#|bd#"
+
+" Prevent entering replace mode
+imap <Insert> <Nop>
+inoremap <S-Insert> <Insert>
