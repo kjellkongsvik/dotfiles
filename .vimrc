@@ -49,6 +49,7 @@ nnoremap <Leader>6 :6b<CR>
 nnoremap <Leader>7 :7b<CR>
 nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
+nnoremap <C-w> :bd<CR>
 
 nnoremap <C-b> :<C-u>NERDTreeToggle<CR>
 nnoremap <C-p> :<C-u>FZF<CR>
