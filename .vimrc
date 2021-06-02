@@ -30,6 +30,15 @@ Plug 'fatih/vim-go'
 
 Plug 'machakann/vim-highlightedyank'
 Plug 'airblade/vim-rooter'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'tag': '0.1.155',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'ionide/Ionide-vim', {
+      \ 'do':  'make fsautocomplete',
+      \}
+
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
