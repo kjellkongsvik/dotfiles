@@ -52,7 +52,7 @@ nnoremap <Leader>9 :9b<CR>
 nnoremap <C-w> :bd<CR>
 
 nnoremap <C-b> :<C-u>NERDTreeToggle<CR>
-nnoremap <C-p> :<C-u>FZF<CR>
+nnoremap <C-p> :<C-u>GFiles<CR>
 
 " Use <c-space> to trigger completion.
 if has('nvim')
@@ -229,7 +229,7 @@ nnoremap <leader><leader> <c-^>
 noremap <leader>p :read !xsel --clipboard --output<cr>
 noremap <leader>c :w !xsel -ib<cr><cr>
 
-let g:ctrlp_user_command = 'fd --type f --color never "" %s'
+let g:ctrlp_user_command = 'fd --type f -H --color never "" %s'
 
 command! BufOnly silent! execute "%bd|e#|bd#"
 
