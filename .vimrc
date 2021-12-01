@@ -13,24 +13,25 @@ set number
 set laststatus=2
 set mouse=a
 set clipboard=unnamedplus
-color desert
+set background=dark
 
 ":highlight CursorColumn ctermbg=DarkGrey cterm=bold term=bold
 
 call plug#begin('~/.vim/plugged')
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'preservim/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
+Plug 'tpope/vim-commentary'
 Plug 'fatih/vim-go'
-
 Plug 'machakann/vim-highlightedyank'
 Plug 'airblade/vim-rooter'
 call plug#end()
+
+colorscheme jellybeans
 
 let g:airline#extensions#tabline#enabled = 1
 set t_Co=256
@@ -236,3 +237,7 @@ command! BufOnly silent! execute "%bd|e#|bd#"
 " Prevent entering replace mode
 imap <Insert> <Nop>
 inoremap <S-Insert> <Insert>
+
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
