@@ -78,7 +78,6 @@ let g:airline#extensions#tabline#enabled = 1
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
 colorscheme jellybeans
 nmap <leader>w :w<CR>
-nnoremap <C-w> :bd<CR>
 " Prevent entering replace mode
 imap <Insert> <Nop>
 inoremap <S-Insert> <Insert>
