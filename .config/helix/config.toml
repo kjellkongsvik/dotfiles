@@ -1,12 +1,16 @@
-theme = "bogster"
-
+theme = "base16_terminal"
 [editor]
-line-number = "relative"
+# line-number = "relative"
+mouse = true
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
 
+[editor.file-picker]
+hidden = false
+
 [keys.normal]
-"ins" = "insert_mode"
+C-s = ":w"
+ins = "insert_mode"
