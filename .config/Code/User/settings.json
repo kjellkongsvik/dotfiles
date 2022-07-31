@@ -24,7 +24,7 @@
     "rust-analyzer.inlayHints.enable": false,
     "window.zoomLevel": 0,
     "workbench.colorTheme": "Default Dark+",
-    "python.languageServer": "Microsoft",
+    "python.languageServer": "Default",
     "go.useLanguageServer": true,
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "modifications",
