@@ -31,6 +31,8 @@ Plug 'fatih/vim-go'
 Plug 'machakann/vim-highlightedyank'
 Plug 'airblade/vim-rooter'
 Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
 call plug#end()
 
@@ -104,3 +106,12 @@ if &term =~ '^screen'
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
 endif
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
+" imap <c-space> <Plug>(asyncomplete_force_refresh)
+" For Vim 8 (<c-@> corresponds to <c-space>):
+imap <c-@> <Plug>(asyncomplete_force_refresh)
+let g:asyncomplete_auto_popup = 0
