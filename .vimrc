@@ -27,7 +27,6 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'preservim/nerdtree'
 Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
 Plug 'tpope/vim-commentary'
-Plug 'fatih/vim-go'
 Plug 'machakann/vim-highlightedyank'
 Plug 'airblade/vim-rooter'
 Plug 'prabirshrestha/vim-lsp'
@@ -43,7 +42,7 @@ set t_Co=256
 let g:go_fmt_autosave=0
 
 " Quick-save
-nmap <leader>w :w<CR>
+nnoremap <leader>w :w<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
@@ -90,14 +89,14 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
-nmap gd :LspDefinition<CR>
-nmap gr :LspReferences<CR>
-nmap gi :LspImplementation<CR>
-nmap gt :LspTypeDefinition<CR>
-nmap <leader>rn :LspRename<CR>
-nmap [g <plug>(lsp-previous-diagnostic)
-nmap ]g <plug>(lsp-next-diagnostic)
-nmap K :LspHover<CR>
+nnoremap gd :LspDefinition<CR>
+nnoremap gr :LspReferences<CR>
+nnoremap gi :LspImplementation<CR>
+nnoremap gt :LspTypeDefinition<CR>
+nnoremap <leader>rn :LspRename<CR>
+nnoremap [g <plug>(lsp-previous-diagnostic)
+nnoremap ]g <plug>(lsp-next-diagnostic)
+nnoremap K :LspHover<CR>
 
 if &term =~ '^screen'
     " tmux will send xterm-style keys when its xterm-keys option is on
@@ -115,3 +114,6 @@ inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " For Vim 8 (<c-@> corresponds to <c-space>):
 imap <c-@> <Plug>(asyncomplete_force_refresh)
 let g:asyncomplete_auto_popup = 0
+
+:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+:nnoremap <leader>sv :source $MYVIMRC<cr>
