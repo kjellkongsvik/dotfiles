@@ -16,7 +16,7 @@ set clipboard=unnamedplus
 set background=dark
 set noswapfile
 set backspace=indent,eol,start
-
+set signcolumn=number
 ":highlight CursorColumn ctermbg=DarkGrey cterm=bold term=bold
 
 call plug#begin('~/.vim/plugged')
@@ -47,7 +47,7 @@ nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
 nnoremap <C-b> :<C-u>NERDTreeToggle<CR>
-nnoremap <leader>f :<C-u>GFiles<CR>
+nnoremap <leader>ff :<C-u>GFiles<CR>
 
 " TextEdit might fail if hidden is not set.
 set hidden
