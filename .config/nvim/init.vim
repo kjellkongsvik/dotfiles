@@ -35,39 +35,25 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 
-" Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
-
-" Completion framework
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-cmdline'
-
-" LSP completion source for nvim-cmp
 Plug 'hrsh7th/cmp-nvim-lsp'
-
-" Snippet completion source for nvim-cmp
-Plug 'hrsh7th/cmp-vsnip'
-
-" Other usefull completion sources
-Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 
-" See hrsh7th's other plugins for more completion sources!
+" For vsnip users.
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 
 " To enable more of the features of rust-analyzer, such as inlay hints and more!
-Plug 'simrat39/rust-tools.nvim'
-
-" Snippet engine
-Plug 'hrsh7th/vim-vsnip'
+" Plug 'simrat39/rust-tools.nvim'
 
 " Fuzzy finder
 " Optional
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
-" Color scheme used in the GIFs!
-" Plug 'arcticicestudio/nord-vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-rooter'
@@ -78,12 +64,15 @@ set signcolumn=number
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 let g:airline#extensions#tabline#enabled = 1
-autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
 colorscheme jellybeans
-nmap <leader>w :w<CR>
+
+nnoremap <leader>w :w<CR>
 " Prevent entering replace mode
 imap <Insert> <Nop>
 inoremap <S-Insert> <Insert>
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " nnoremap <C-p> :<C-u>GFiles<CR>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -134,6 +123,36 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
+
+  local cmp = require'cmp'
+ cmp.setup({
+     completion = {
+       autocomplete = false,
+     },
+     snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      end,
+    },
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
 
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
