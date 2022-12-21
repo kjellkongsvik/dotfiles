@@ -11,3 +11,5 @@
     sw = switch
     chp = cherry-pick
 
+[rebase]
+	autosquash = true
