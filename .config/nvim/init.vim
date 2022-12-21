@@ -42,10 +42,6 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
-" For vsnip users.
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
-
 " To enable more of the features of rust-analyzer, such as inlay hints and more!
 " Plug 'simrat39/rust-tools.nvim'
 
@@ -59,7 +55,15 @@ Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-rooter'
 
 Plug 'preservim/nerdtree'
+Plug 'kylechui/nvim-surround'
+
 call plug#end()
+
+function Gitbranch()
+    return trim(system("git branch | awk 'NF==2 {print $2)'))
+endfunction
+
+
 set signcolumn=number
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
@@ -79,6 +83,7 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fd <cmd>Telescope diagnostics<cr>
 " Set completeopt to have a better completion experience
 " :help completeopt
 " menuone: popup even when there's only one match
@@ -95,8 +100,8 @@ lua <<EOF
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', 'dp', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', 'dn', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
@@ -177,3 +182,4 @@ require('lspconfig')['rust_analyzer'].setup{
 }
 EOF
 
+set statusline+=\ %t%y\~(%{Gitbranch()})
