@@ -88,6 +88,7 @@ set completeopt=menuone,noinsert,noselect
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
+set au FocusLost * :wa
 
 lua <<EOF
 -- Mappings.

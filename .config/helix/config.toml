@@ -5,6 +5,7 @@ mouse = true
 auto-completion = false
 idle-timeout = 1000
 gutters = ["line-numbers"]
+auto-save = true
 
 [editor.cursor-shape]
 insert = "bar"
