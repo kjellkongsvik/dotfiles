@@ -24,6 +24,7 @@ set background=dark
 " set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
 "
+autocmd FocusLost * wall
 
 " Fish doesn't play all that well with others
 set shell=/bin/bash
@@ -93,7 +94,6 @@ set completeopt=menuone,noinsert,noselect
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
-set au FocusLost * :wa
 
 lua <<EOF
 -- Mappings.
