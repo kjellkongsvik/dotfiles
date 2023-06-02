@@ -42,11 +42,14 @@ args = { attachCommands = [ "platform select remote-gdb-server", "platform conne
 [[language]]
 name = "python"
 roots = ["pyproject.toml", "setup.py", "Poetry.lock", ".git"]
-language-server = { command = "pyright-langserver", args = ["--stdio"] }
+language-server = { command = "pylsp" }
 auto-format = true
-formatter = {command = 'black', args = ["--quiet", "-"]}
-config = ""
+config = {}
 
 [[grammar]]
 name = "python"
 source = { git = "https://github.com/tree-sitter/tree-sitter-python", rev = "62827156d01c74dc1538266344e788da74536b8a" }
+
+[[language]]
+name = "c-sharp"
+language-server = { command = "dotnet", args = [ "/usr/local/share/omnisharp-linux-x64-net6.0/OmniSharp.dll", "--languageserver" ] }

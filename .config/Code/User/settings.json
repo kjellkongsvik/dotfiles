@@ -32,4 +32,7 @@
     "terminal.integrated.shell.linux": "/bin/bash",
     "python.formatting.provider": "none",
     "python.testing.autoTestDiscoverOnSaveEnabled": false,
+    "[python]": {
+        "editor.formatOnType": true
+    },
 }
