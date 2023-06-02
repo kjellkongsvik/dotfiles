@@ -1,5 +1,4 @@
 {
-    "editor.minimap.enabled": false,
     "editor.codeLens": true,
     "editor.renderWhitespace": "none",
     "editor.roundedSelection": false,
@@ -32,4 +31,7 @@
     "terminal.integrated.shell.linux": "/bin/bash",
     "python.formatting.provider": "none",
     "python.testing.autoTestDiscoverOnSaveEnabled": false,
+    "[python]": {
+        "editor.formatOnType": true
+    },
 }

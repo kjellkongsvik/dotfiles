@@ -3,6 +3,7 @@ theme = "base16_default_dark"
 [editor]
 mouse = true
 auto-completion = false
+auto-pairs = false
 idle-timeout = 1000
 gutters = ["line-numbers"]
 auto-save = true
@@ -17,16 +18,25 @@ select = "underline"
 hidden = false
 
 [keys.normal]
-C-s = ":w"
 ins = "insert_mode"
 tab = ":bn"
 S-tab = ":bp"
+C-right = "move_next_word_start"
+C-left = "move_prev_word_start"
+
+A-P = "select_prev_sibling"
+A-p = "select_next_sibling"
 
 [keys.insert]
 C-space = "completion"
+C-right = "move_next_word_start"
+C-left = "move_prev_word_start"
 
 [editor.search]
 smart-case = false
 
 [editor.lsp]
 auto-signature-help = false
+
+[keys.select]
+"g" = { "e" = "goto_file_end" }
