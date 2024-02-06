@@ -15,7 +15,6 @@ set wildmode=longest,list   " get bash-like tab completions
 filetype plugin indent on   "allow auto-indenting depending on file type
 syntax on                   " syntax highlighting
 set mouse=a                 " enable mouse click
-set clipboard=unnamedplus   " using system clipboard
 filetype plugin on
 set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
@@ -32,50 +31,24 @@ let mapleader = "\<Space>"
 
 call plug#begin('~/.vim/plugged')
 Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-commentary'
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
 
-" To enable more of the features of rust-analyzer, such as inlay hints and more!
-" Plug 'simrat39/rust-tools.nvim'
-
-" Fuzzy finder
-" Optional
-Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-rooter'
-
-Plug 'preservim/nerdtree'
-Plug 'kylechui/nvim-surround'
-
 call plug#end()
-
-function Gitbranch()
-    return trim(system("git branch | awk 'NF==2 {print $2)'))
-endfunction
-
 
 set signcolumn=number
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
-let g:airline#extensions#tabline#enabled = 1
 colorscheme jellybeans
 
-nnoremap <leader>w :w<CR>
 " Prevent entering replace mode
 imap <Insert> <Nop>
 inoremap <S-Insert> <Insert>
-
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
