@@ -10,6 +10,7 @@
     st = status
     sw = switch
     chp = cherry-pick
+    l = log --oneline
 
 [rebase]
 	autosquash = true
