@@ -14,3 +14,4 @@ language-servers = [ "csharp-ls" ]
 [[language]]
 name = "python"
 auto-format = true
+language-servers = ["pylsp", "ruff"]
