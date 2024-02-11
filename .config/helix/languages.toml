@@ -15,3 +15,6 @@ language-servers = [ "csharp-ls" ]
 name = "python"
 auto-format = true
 language-servers = ["pylsp", "ruff"]
+
+[language-server.pylsp.config.pylsp.plugins]
+rope_autoimport = {enabled = true}
