@@ -1,0 +1,6 @@
+[shell]
+program = "/bin/fish"
+
+[window]
+decorations = "none"
+startup_mode = "Maximized"
