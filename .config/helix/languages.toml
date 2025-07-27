@@ -1,12 +1,8 @@
-[language-server.ruff]
-command = "ruff"
-args = ["server"]
-
 [language-server.ty]
 command = "ty"
 args = ["server"]
 
 [[language]]
 name = "python"
-auto-format = false
+auto-format = true
 language-servers = ["basedpyright", "ruff"]
