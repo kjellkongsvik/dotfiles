@@ -24,9 +24,11 @@ tab = ":bn"
 S-tab = ":bp"
 C-right = "move_next_word_start"
 C-left = "move_prev_word_start"
-
+C-S-up = "increment"
+C-S-down = "decrement"
 A-P = "select_prev_sibling"
 A-p = "select_next_sibling"
+"@" = "goto_word"
 
 [keys.insert]
 C-space = "completion"
@@ -39,5 +41,5 @@ smart-case = false
 [editor.lsp]
 auto-signature-help = false
 
-[keys.select]
-"g" = { "e" = "goto_file_end" }
+[editor.soft-wrap]
+enable = true

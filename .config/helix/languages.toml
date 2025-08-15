@@ -2,7 +2,47 @@
 command = "ty"
 args = ["server"]
 
+[language-server.pyrefly]
+command = "pyrefly"
+args = ["lsp"]
+
 [[language]]
 name = "python"
 auto-format = true
 language-servers = ["basedpyright", "ruff"]
+# language-servers = ["ty", "ruff"]
+# language-servers = ["pyrefly", "ruff"]
+
+[[language]]
+name = "markdown"
+indent = { tab-width = 4, unit = "    " }
+
+[language-server.jq]
+command = "jq-lsp"
+
+[language-server.cs]
+command = "jq-lsp"
+
+[[language]]
+name = "json"
+formatter = { command = "jq", args = ["--indent", "4"] }
+
+[language-server.pyright.config]
+reportMissingTypeStubs = false
+reportUnusedParameter = false
+reportUnknownArgumentType = false
+
+[language-server.pyright.config.python.analysis]
+typeCheckingMode = "basic"
+autoImportCompletions = true
+reportUnusedParameter = false
+reportUnknownArgumentType = false
+
+[language-server.csharp]
+command = "csharp-ls"
+
+[[language]]
+name = "c-sharp"
+language-servers = ["csharp"]
+auto-format = true
+formatter = { command = "dotnet", args=["csharpier", "format"]}
