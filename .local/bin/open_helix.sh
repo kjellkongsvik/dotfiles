@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
-file_name=`wl-paste`
+case "$(uname -sr)" in
+  Darwin*)
+    file_name=`pbpaste`
+    ;;
+  Linux*)
+    file_name=`wl-paste`
+    ;;
+esac
 abs_file_name=$(readlink -f $file_name)
 window_index=$(tmux display-message -p '#{window_index}')
 pane_id=$(tmux list-panes -t $window_index -F "#{pane_id} #{pane_current_command}" | awk '$2 == "hx" { print $1; exit }')
