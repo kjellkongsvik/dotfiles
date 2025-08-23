@@ -8,5 +8,11 @@ function fish_prompt
         echo (set_color red)'$ '
     end
 
-    echo -n (set_color cyan)(prompt_pwd)(set_color white)'$ '
+    if test -q $prompt_pwd
+        set pp prompt_pwd
+    else
+        set pp pwd
+    end
+
+    echo -n (set_color cyan)($pp)(set_color white)'$ '
 end
