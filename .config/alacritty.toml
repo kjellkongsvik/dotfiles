@@ -2,3 +2,6 @@
 decorations = "none"
 startup_mode = "Maximized"
 option_as_alt = "OnlyLeft"
+
+[font]
+size = 15
