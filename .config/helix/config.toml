@@ -9,6 +9,7 @@ gutters = ["line-numbers"]
 auto-save = true
 cursorline = true
 bufferline = "multiple"
+clipboard-provider = "pasteboard"
 
 [editor.inline-diagnostics]
 cursor-line = "disable"
