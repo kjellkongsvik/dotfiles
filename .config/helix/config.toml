@@ -10,6 +10,13 @@ auto-save = true
 cursorline = true
 bufferline = "multiple"
 
+[editor.inline-diagnostics]
+cursor-line = "disable"
+
+[keys.normal.space.i]
+c = ":toggle inline-diagnostics.cursor-line hint"
+C = ":toggle inline-diagnostics.cursor-line disable"
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
@@ -24,6 +31,8 @@ tab = ":bn"
 S-tab = ":bp"
 C-right = "move_next_word_start"
 C-left = "move_prev_word_start"
+A-right = "move_next_sub_word_start"
+A-left = "move_prev_sub_word_start"
 C-S-up = "increment"
 C-S-down = "decrement"
 A-P = "select_prev_sibling"

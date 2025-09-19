@@ -25,7 +25,7 @@ command = "jq-lsp"
 
 [[language]]
 name = "json"
-formatter = { command = "jq", args = ["--indent", "4"] }
+formatter = { command = "jq", args = ["--indent", "2"] }
 
 [language-server.pyright.config]
 reportMissingTypeStubs = false
