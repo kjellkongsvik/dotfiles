@@ -10,6 +10,13 @@ auto-save = true
 cursorline = true
 bufferline = "multiple"
 
+[editor.inline-diagnostics]
+cursor-line = "disable"
+
+[keys.normal.space.i]
+c = ":toggle inline-diagnostics.cursor-line hint"
+C = ":toggle inline-diagnostics.cursor-line disable"
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
