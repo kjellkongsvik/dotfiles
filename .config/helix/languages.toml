@@ -2,10 +2,6 @@
 command = "ty"
 args = ["server"]
 
-[language-server.ty.config.experimental]
-rename = true
-autoImport = true
-
 [language-server.pyrefly]
 command = "pyrefly"
 args = ["lsp"]
