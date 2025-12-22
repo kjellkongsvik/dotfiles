@@ -25,6 +25,18 @@ select = "underline"
 [editor.file-picker]
 hidden = false
 
+[keys.normal._] # change case
+u = "switch_to_uppercase"
+l = "switch_to_lowercase"
+p = ":pipe caseify Pascal"
+c = ":pipe caseify Camel"
+s = ":pipe caseify Snake"
+d = ":pipe caseify Dot"
+k = ":pipe caseify Kebab"
+t = ":pipe caseify Capitalised"
+o = ":pipe caseify Sentence"
+n = ":pipe caseify Constant"
+
 [keys.normal]
 ins = "insert_mode"
 tab = ":bn"
