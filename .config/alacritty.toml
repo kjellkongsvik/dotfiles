@@ -5,3 +5,17 @@ option_as_alt = "OnlyLeft"
 
 [font]
 size = 15
+
+
+[[hints.enabled]]
+action = "Copy"
+# command = "xdg-open" # On Linux/BSD
+# command = "open" # On macOS
+# command = { program = "cmd", args = [ "/c", "start", "" ] } # On Windows
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = true
+binding = { key = "R", mods = "Control|Shift" }
+regex = "[0-9a-f]{5,40}"
+# regex = "^(/|\\.|~)?(?:/[^/]+)*$"
