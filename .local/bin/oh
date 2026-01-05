@@ -2,20 +2,23 @@
 
 case "$(uname -sr)" in
   Darwin*)
-    file_name=`pbpaste`
+    var=`pbpaste`
     ;;
   Linux*)
-    file_name=`wl-paste`
+    var=`wl-paste`
     ;;
 esac
-abs_file_name=$(readlink -f $file_name)
+var=$(readlink -f $var)
 window_index=$(tmux display-message -p '#{window_index}')
 pane_id=$(tmux list-panes -t $window_index -F "#{pane_id} #{pane_current_command}" | awk '$2 == "hx" { print $1; exit }')
 if [ -z "${pane_id}" ]; then
   exit
 fi
+var=`echo $var | sed s/\(/:/g`
+var=`echo $var | sed s/\,/:/g`
+var=`echo $var | sed s/\)//g`
 
 tmux select-pane -t $pane_id
 tmux send-keys -t $pane_id Escape
-tmux send-keys -t $pane_id ":o "$abs_file_name
+tmux send-keys -t $pane_id ":o "$var
 tmux send-keys -t $pane_id Enter
