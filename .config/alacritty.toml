@@ -2,3 +2,12 @@
 decorations = "none"
 startup_mode = "Maximized"
 option_as_alt = "OnlyLeft"
+
+[[hints.enabled]]
+action = "Copy"
+mouse = { enabled = true }
+binding = { key = "L", mods = "Control|Shift" }
+# regex = "(?<=--- a)[^ ]*"
+# regex = "(?<=hh((---|\\+\\+\\+) [ab]))[^ ]*"
+# regex = "([.\\w\\-~\\$@]+)?(/[.\\w\\-@]+)+(\\:\\d)*(\\(\\d,\\d\\))*{10,}"
+regex = "[a-f0-9]{7,40}|(([.\\w\\-~\\$@]+)?(/[.\\w\\-@]+)+(\\:\\d)*(\\(\\d,\\d\\))*)|(---|\\+\\+\\+) [ab]/(?<match>.*)"
