@@ -247,6 +247,7 @@ plugins {
     compact-bar location="zellij:compact-bar" {
       tooltip "F1"
     }
+    default_layout "compact"
     configuration location="zellij:configuration"
     filepicker location="zellij:strider" {
         cwd "/"
