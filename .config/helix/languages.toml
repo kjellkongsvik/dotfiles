@@ -9,9 +9,7 @@ args = ["lsp"]
 [[language]]
 name = "python"
 auto-format = true
-language-servers = ["basedpyright", "ruff"]
-# language-servers = ["ty", "ruff"]
-# language-servers = ["pyrefly", "ruff"]
+language-servers = ["ty", "ruff"]
 
 [[language]]
 name = "markdown"
