@@ -1,11 +1,22 @@
 #!/usr/bin/env bash
 
-var=$1
+case "$(uname -sr)" in
+  Darwin*)
+    var=`pbpaste`
+    ;;
+  Linux*)
+    var=`wl-paste`
+    ;;
+esac
 var=`echo $var | sed s/\(/:/g`
 var=`echo $var | sed s/\,/:/g`
 var=`echo $var | sed s/\)//g`
+var=`echo $var | sed s/\n//g`
+var=`echo $var | sed s/\ //g`
 
-zellij action move-focus left
-zellij action write 27
-zellij action write-chars ":o "$var
-zellij action write 13
+if [[ ${#var} -gt 1 && ${#var} -lt 300 ]]; then
+  zellij action move-focus left
+  zellij action write 27
+  zellij action write-chars ":o "$var
+  zellij action write 13
+fi
