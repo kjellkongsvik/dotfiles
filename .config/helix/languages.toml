@@ -41,6 +41,6 @@ command = "csharp-language-server"
 
 [[language]]
 name = "c-sharp"
-language-servers = ["csharp"]
+language-servers = ["roslyn-language-server"]
 auto-format = true
 formatter = { command = "dotnet", args=["csharpier", "format"]}
