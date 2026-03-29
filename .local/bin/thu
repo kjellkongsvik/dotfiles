@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+find_hx_pane() {
+  zellij action list-panes -j -s | jq -r '.[] | select(.pane_command == "hx") | .id' | head -1
+}
+
+pick=$(zellij ac dump-screen -f | thumbs -u)
+
+case "$1" in
+  copy*)
+    case "$(uname -sr)" in
+      Darwin*)
+        echo -n "$pick" | pbcopy
+        ;;
+      Linux*)
+        wl-copy "$pick"
+        ;;
+    esac
+    ;;
+  hx*)
+    if [[ -n "$pick" ]]; then
+      hx_pane=$(find_hx_pane)
+      if [[ -n "$hx_pane" ]]; then
+        pick=$(echo "$pick" | sed 's/(/:/g; s/,/:/g; s/)//g; s/ //g')
+        zellij action send-keys "Esc" --pane-id "$hx_pane"
+        zellij action write-chars ":o $pick" --pane-id "$hx_pane"
+        zellij action send-keys "Enter" --pane-id "$hx_pane"
+      fi
+    fi
+    ;;
+esac
