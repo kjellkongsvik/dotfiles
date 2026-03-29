@@ -25,7 +25,7 @@ select = "underline"
 [editor.file-picker]
 hidden = false
 
-[keys.normal._] # change case
+[keys.normal.-] # change case
 u = "switch_to_uppercase"
 l = "switch_to_lowercase"
 p = ":pipe caseify Pascal"

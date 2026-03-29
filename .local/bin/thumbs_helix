@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+find_hx_pane() {
+  current_tab=$(zellij action current-tab-info -j | jq .tab_id)
+  zellij action list-panes -j -s | jq --argjson tab "$current_tab" -r '.[]| select(.pane_command == "hx" and .tab_id == $tab) | .id' | head -1
+}
+
+pick=$(zellij ac dump-screen | thumbs -u -r)
+
+if [[ -n "$pick" ]]; then
+  # hx_pane=$(find_hx_pane)
+  # hx_pane=1
+  # if [[ -n "$hx_pane" ]]; then
+    pick=$(echo "$pick" | sed 's/(/:/g; s/,/:/g; s/)//g; s/ //g')
+    # zjctl pane focus --pane id:terminal:$hx_pane
+    zellij ac move-focus left
+    zellij ac send-keys "Esc"
+    zellij ac write-chars ":o $pick"
+    zellij ac send-keys "Enter"
+  # fi
+fi
