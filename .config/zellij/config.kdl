@@ -248,7 +248,6 @@ plugins {
     compact-bar location="zellij:compact-bar" {
       tooltip "F1"
     }
-    default_layout "compact"
     configuration location="zellij:configuration"
     filepicker location="zellij:strider" {
         cwd "/"
@@ -301,7 +300,7 @@ default_mode "locked"
 // The name of the default layout to load on startup
 // Default: "default"
 //
-// default_layout "compact"
+default_layout "compact"
 
 // The folder in which Zellij will look for layouts
 // (Requires restart)
