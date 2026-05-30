@@ -7,7 +7,7 @@ option_as_alt = "OnlyLeft"
 action = "Copy"
 mouse = { enabled = true }
 binding = { key = "L", mods = "Control|Shift" }
-
+hyperlinks = true
 regex = "[a-f0-9]{7,40}|(([.\\w\\-~\\$@]+)?(/[.\\w\\-@]+)+(\\:\\d)*(\\(\\d+,\\d+\\))*)|(---|\\+\\+\\+) [ab]/(?<match>.*)"
 
 [colors.primary]
