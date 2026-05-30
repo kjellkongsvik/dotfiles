@@ -158,7 +158,7 @@ keybinds clear-defaults=true {
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt =" { Resize "Increase"; }
         bind "Super O" { PreviousSwapLayout; }
-        bind "Super P " { NextSwapLayout; }
+        bind "Super P" { NextSwapLayout; }
         bind "Super F" { ToggleFocusFullscreen; SwitchToMode "locked"; }
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Alt h" { MoveFocusOrTab "left"; }
