@@ -26,17 +26,6 @@ command = "jq-lsp"
 name = "json"
 formatter = { command = "jq", args = ["--indent", "2"] }
 
-[language-server.pyright.config]
-reportMissingTypeStubs = false
-reportUnusedParameter = false
-reportUnknownArgumentType = false
-
-[language-server.pyright.config.python.analysis]
-typeCheckingMode = "basic"
-autoImportCompletions = true
-reportUnusedParameter = false
-reportUnknownArgumentType = false
-
 [[language]]
 name = "c-sharp"
 language-servers = ["roslyn-language-server"]
