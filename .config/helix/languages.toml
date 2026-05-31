@@ -8,12 +8,9 @@ language-servers = ["ty", "ruff"]
 name = "markdown"
 indent = { tab-width = 4, unit = "    " }
 
-[language-server.jq]
-command = "jq-lsp"
-
 [[language]]
 name = "json"
-formatter = { command = "jq", args = ["--indent", "2"] }
+formatter = { command = "jq-lsp", args = ["--indent", "2"] }
 
 [[language]]
 name = "c-sharp"
