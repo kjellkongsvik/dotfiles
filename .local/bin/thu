@@ -1,42 +1,17 @@
 #!/usr/bin/env bash
 
-# find_hx_pane() {
-#   local panes=$(zellij action list-panes -j -s -t)
-#   local tab=$(echo "$panes" | jq -r ".[] | select(.is_focused == true) | .tab_id")
-#   echo "$panes" | jq -r ".[] | select(.pane_command == \"hx\" and .tab_id == $tab) | .id" | head -1
-# }
-
 pick=$(zellij ac dump-screen | thumbs -u -r)
-case "$(uname -sr)" in
-  Darwin*)
-    echo -n "$pick" | pbcopy
-    ;;
-  Linux*)
-    wl-copy "$pick"
-    ;;
-esac
+# OSC52
+printf "\033]52;c;$(printf $pick | base64)\a"
 
 case "$1" in
-  copy*)
-    case "$(uname -sr)" in
-      Darwin*)
-        echo -n "$pick" | pbcopy
-        ;;
-      Linux*)
-        wl-copy "$pick"
-        ;;
-    esac
-    ;;
   hx*)
     if [[ -n "$pick" ]]; then
-      # hx_pane=$(find_hx_pane)
-      # if [[ -n "$hx_pane" ]]; then
-        pick=$(echo "$pick" | sed 's/(/:/g; s/,/:/g; s/)//g; s/ //g')
-        zellij ac move-focus left
-        zellij action send-keys "Esc"
-        zellij action write-chars ":o $pick"
-        zellij action send-keys "Enter"
-      # fi
+      pick=$(echo "$pick" | sed 's/(/:/g; s/,/:/g; s/)//g; s/ //g')
+      zellij ac move-focus left
+      zellij action send-keys "Esc"
+      zellij action write-chars ":o $pick"
+      zellij action send-keys "Enter"
     fi
     ;;
 esac
