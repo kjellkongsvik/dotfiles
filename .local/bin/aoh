@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:${PATH:-}"
+
+if [[ $# -eq 0 ]]; then
+  exit 0
+fi
+
+pick="${*: -1}"
+
+if [[ -z "$pick" ]]; then
+  exit 0
+fi
+
+if [[ -n "$pick" ]]; then
+  printf "\033]52;c;$(printf $pick | base64)\a"
+fi
+
+target=$(printf '%s' "$pick" | sed 's/(/:/g; s/,/:/g; s/)//g; s/ //g')
+tab_id=$(zellij action current-tab-info --json | jq -r '.tab_id')
+hx_pane=$(
+  zellij action list-panes --all --json |
+    jq -r --argjson tab_id "$tab_id" '
+      map(select(
+        .is_plugin == false and
+        .exited == false and
+        .tab_id == $tab_id and
+        (((.pane_command // .terminal_command // "") | split(" ")[0] | split("/")[-1]) == "hx")
+      ))
+      | sort_by(if .is_focused then 0 else 1 end, .id)
+      | first
+      | if . then "terminal_\(.id)" else empty end
+    '
+)
+
+if [[ -z "$hx_pane" ]]; then
+  printf 'No zellij pane running hx found in current tab\n' >&2
+  exit 1
+fi
+
+zellij action send-keys --pane-id "$hx_pane" "Esc"
+zellij action write-chars --pane-id "$hx_pane" ":o $target"
+zellij action send-keys --pane-id "$hx_pane" "Enter"
+zellij action focus-pane-id "$hx_pane"

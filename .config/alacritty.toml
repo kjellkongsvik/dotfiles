@@ -4,8 +4,15 @@ startup_mode = "Maximized"
 option_as_alt = "OnlyLeft"
 
 [[hints.enabled]]
-action = "Copy"
+command = { program = "/Users/kwko/.local/bin/aoh" }
 mouse = { enabled = true }
+binding = { key = "H", mods = "Control|Shift" }
+hyperlinks = true
+regex = "(?:/(?:[.\\w\\-~\\$@]+/)*[.\\w\\-~@]+|(?:\\./|\\.\\./)?(?:[.\\w\\-~\\$@]+/)+[.\\w\\-~@]+)(?::\\d+(?::\\d+)?|\\(\\d+(?:,\\d+)?\\))?"
+
+[[hints.enabled]]
+action = "Copy"
+mouse = { enabled = false }
 binding = { key = "L", mods = "Control|Shift" }
 hyperlinks = true
 regex = "[a-f0-9]{7,40}|(([.\\w\\-~\\$@]+)?(/[.\\w\\-@]+)+(\\:\\d)*(\\(\\d+,\\d+\\))*)|(---|\\+\\+\\+) [ab]/(?<match>.*)"
