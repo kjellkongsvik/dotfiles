@@ -1,17 +1,46 @@
 #!/usr/bin/env bash
 
-pick=$(zellij ac dump-screen | thumbs -u -r)
-# OSC52
-printf "\033]52;c;$(printf $pick | base64)\a"
+zellij_pane=false
+if [[ "${1:-}" == "--zellij-pane" ]]; then
+  zellij_pane=true
+  shift
+fi
+
+copy_pick() {
+  if [[ -n "$pick" ]]; then
+    printf "\033]52;c;%s\a" "$(printf '%s' "$pick" | base64 | tr -d '\n')"
+  fi
+}
+
+open_in_hx() {
+  if [[ -n "$pick" ]]; then
+    pick=$(echo "$pick" | sed 's/(/:/g; s/,/:/g; s/)//g; s/ //g')
+    if [[ -n "${original_pane_id:-}" ]]; then
+      zellij action focus-pane-id "$original_pane_id"
+    fi
+    zellij ac move-focus left
+    zellij action send-keys "Esc"
+    zellij action write-chars ":o $pick"
+    zellij action send-keys "Enter"
+  fi
+}
+
+if $zellij_pane; then
+  screen_file=$(mktemp)
+  trap 'rm -f "$screen_file"' EXIT
+  current_tab_id=$(zellij action current-tab-info --json | jq -r '.tab_id')
+  original_pane_id=$(zellij action list-panes --json --all | jq -r --argjson tab "$current_tab_id" '.[] | select(.tab_id == $tab and .is_focused and (.is_plugin | not)) | .id' | head -n 1)
+  zellij ac dump-screen > "$screen_file"
+  zellij action focus-pane-id "$ZELLIJ_PANE_ID"
+  pick=$(thumbs -u -r < "$screen_file")
+else
+  pick=$(zellij ac dump-screen | thumbs -u -r)
+fi
+
+copy_pick
 
 case "$1" in
   hx*)
-    if [[ -n "$pick" ]]; then
-      pick=$(echo "$pick" | sed 's/(/:/g; s/,/:/g; s/)//g; s/ //g')
-      zellij ac move-focus left
-      zellij action send-keys "Esc"
-      zellij action write-chars ":o $pick"
-      zellij action send-keys "Enter"
-    fi
+    open_in_hx
     ;;
 esac
