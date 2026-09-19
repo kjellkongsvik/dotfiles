@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 sed -i "s/⏎/\n/g" $1
-trap "rm "$1 EXIT
-pick=$(cat $1| thumbs -u -r -x "(?P<match>([.\w\-@$~\[\]]+)?(/[.\w\-@$\[\]]+)+(:\d+(:\d+)?|\(\d+(,\d+)?\))?)")
+content=$(cat $1)
+rm $1
+pick=$(echo "$content"| thumbs -u -r -x "(?P<match>([.\w\-@$~\[\]]+)?(/[.\w\-@$\[\]]+)+(:\d+(:\d+)?|\(\d+(,\d+)?\))?)")
 
 if [[ -n "$pick" ]]; then
   # OSC52
