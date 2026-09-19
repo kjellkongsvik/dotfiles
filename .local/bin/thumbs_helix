@@ -1,21 +1,17 @@
 #!/usr/bin/env bash
-
-find_hx_pane() {
-  current_tab=$(zellij action current-tab-info -j | jq .tab_id)
-  zellij action list-panes -j -s | jq --argjson tab "$current_tab" -r '.[]| select(.pane_command == "hx" and .tab_id == $tab) | .id' | head -1
-}
-
-pick=$(zellij ac dump-screen | thumbs -u -r)
+sed -i "s/⏎/\n/g" $1
+trap "rm "$1 EXIT
+pick=$(cat $1| thumbs -u -r -x "(?P<match>([.\w\-@$~\[\]]+)?(/[.\w\-@$\[\]]+)+(:\d+:\d+|\(\d+(,\d+)?\))?)")
 
 if [[ -n "$pick" ]]; then
-  # hx_pane=$(find_hx_pane)
-  # hx_pane=1
-  # if [[ -n "$hx_pane" ]]; then
-    pick=$(echo "$pick" | sed 's/(/:/g; s/,/:/g; s/)//g; s/ //g')
-    # zjctl pane focus --pane id:terminal:$hx_pane
-    zellij ac move-focus left
-    zellij ac send-keys "Esc"
-    zellij ac write-chars ":o $pick"
-    zellij ac send-keys "Enter"
-  # fi
+  # OSC52
+  printf "\033]52;c;$(printf $pick | base64)\a"
+  maybe_file=`echo $pick|sed "s/:.*//g"`
+  if [ -f $maybe_file ]; then
+      pick=$(echo "$pick" | sed 's/(/:/g; s/,/:/g; s/)//g; s/ //g')
+      zellij ac move-focus left
+      zellij action send-keys "Esc"
+      zellij action write-chars ":o $pick"
+      zellij action send-keys "Enter"
+  fi
 fi

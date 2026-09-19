@@ -150,6 +150,15 @@ keybinds clear-defaults=true {
         }
     }
     shared_among "normal" "locked" {
+        bind "Ctrl h" {
+            DumpScreen "/tmp/a_very_random_file" {
+                ansi true
+            }
+            Run "thumbs_helix" "/tmp/a_very_random_file" {
+                in_place true
+                close_on_exit true
+            }
+        }
         bind "Alt left" { MoveFocusOrTab "left"; }
         bind "Alt down" { MoveFocus "down"; }
         bind "Alt up" { MoveFocus "up"; }
@@ -382,7 +391,7 @@ on_force_close "detach"
 
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
-// scrollback_editor "/usr/bin/vim"
+scrollback_editor "hx"
 
 // A fixed name to always give the Zellij session.
 // Consider also setting `attach_to_session true,`
