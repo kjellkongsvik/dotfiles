@@ -392,7 +392,7 @@ on_force_close "detach"
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
 scrollback_editor "hx"
-
+scroll_mode_sync false
 // A fixed name to always give the Zellij session.
 // Consider also setting `attach_to_session true,`
 // otherwise this will error if such a session exists.
