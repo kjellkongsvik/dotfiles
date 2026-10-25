@@ -2,17 +2,21 @@
 sed -i "s/⏎/\n/g" $1
 content=$(cat $1)
 rm $1
-pick=$(echo "$content"| thumbs -u -r -x "(?P<match>([.\w\-@$~\[\]]+)?(/[.\w\-@$\[\]]+)+(:\d+(:\d+)?|\(\d+(,\d+)?\))?)")
+pattern="(?P<match>([.\w\-@$~\[\]]+)?(/[.\w\-@$\[\]]+)+(:\d+(:\d+)?|\(\d+(,\d+)?\))?)"
+# pattern="\S{10,}"
+pick=$(echo "$content"| thumbs -u -r -x $pattern)
 
 if [[ -n "$pick" ]]; then
   # OSC52
   printf "\033]52;c;$(printf $pick | base64)\a"
-  maybe_file=`echo $pick|sed "s/:.*//g"`
-  if [ -f $maybe_file ]; then
-      pick=$(echo "$pick" | sed 's/(/:/g; s/,/:/g; s/)//g; s/ //g')
-      zellij ac move-focus left
-      zellij action send-keys "Esc"
-      zellij action write-chars ":o $pick"
-      zellij action send-keys "Enter"
+  if [ $2 = "hx" ]; then
+    maybe_file=`echo $pick|sed "s/:.*//g"`
+    if [ -f $maybe_file ]; then
+        pick=$(echo "$pick" | sed 's/(/:/g; s/,/:/g; s/)//g; s/ //g')
+        zellij ac move-focus left
+        zellij action send-keys "Esc"
+        zellij action write-chars ":o $pick"
+        zellij action send-keys "Enter"
+    fi
   fi
 fi

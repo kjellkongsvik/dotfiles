@@ -154,6 +154,15 @@ keybinds clear-defaults=true {
             DumpScreen "/tmp/a_very_random_file" {
                 ansi true
             }
+            Run "thumbs_helix" "/tmp/a_very_random_file" "hx" {
+                in_place true
+                close_on_exit true
+            }
+        }
+        bind "Ctrl k" {
+            DumpScreen "/tmp/a_very_random_file" {
+                ansi true
+            }
             Run "thumbs_helix" "/tmp/a_very_random_file" {
                 in_place true
                 close_on_exit true
